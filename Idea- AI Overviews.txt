@@ -1,0 +1,111 @@
+Radar de visibilité IA Suit chaque jour si une marque, un produit ou une personne apparaît dans les *AI Overviews* de Google, et identifie les sources citées. | Agences SEO, marques ; abonnement par mots-clés suivis. 
+
+# Approfondis l'idée du radar de visibilité IA
+
+Le **radar de visibilité IA** est un micro-SaaS qui mesure si une marque, un produit ou une entité apparaît — et comment — dans les réponses générées par Google AI Overviews. Son cœur de valeur n’est pas « suis-je bien classé ? », mais « quand Google répond à la place des sites, suis-je mentionné, cité, bien positionné et correctement représenté ? ». Les AI Overviews synthétisent plusieurs sources web et affichent des citations inline, ce qui rend cette visibilité mesurable.
+
+## Problème résolu
+
+Une entreprise peut être bien référencée en SEO tout en disparaissant de la réponse IA : Google peut citer des concurrents, des comparatifs, des médias ou des pages tierces. Les AI Overviews sont déclenchées sur de nombreuses requêtes informationnelles et question-style, puis synthétisent des passages issus de pages indexées, avec des liens vers les sources utilisées.
+
+Le client veut donc répondre à quatre questions :
+
+- Pour quelles requêtes une AI Overview apparaît-elle ?
+- Ma marque y est-elle mentionnée dans le texte ?
+- Mon domaine est-il cité comme source ?
+- Quels concurrents ou tiers captent cette visibilité à ma place ?
+
+
+## Positionnement produit
+
+**Nom possible :** *AIO Radar*, *AnswerShare*, ou *Cited*.
+
+**Promesse :** « Sachez chaque jour si Google parle de vous dans ses réponses IA — et qui prend votre place quand vous n’y êtes pas. »
+
+La différenciation consiste à ne pas vendre un tableau de bord SEO généraliste, mais un produit ultra-simple centré sur **trois métriques** : mention de marque, citation de domaine et part de voix IA. C’est le même type de métrique que les plateformes existantes proposent — mentions, citations, pages citées et score de visibilité — mais dans une interface plus resserrée et actionnable.[^2_5][^2_6]
+
+## Fonctionnalités MVP
+
+| Fonction | Détail |
+| :-- | :-- |
+| Suivi de requêtes | L’utilisateur importe 50 à 500 requêtes stratégiques : mots-clés de marque, comparatifs, problèmes clients, questions « meilleur », « alternative », « prix », etc. |
+| Détection d’AI Overview | Pour chaque requête, le système détermine si une AI Overview est présente. SerpApi renvoie l’objet `ai_overview` dans les résultats Google Search.  |
+| Analyse de mention | Détection du nom de marque, produit, fondateur ou entité dans le texte généré. |
+| Analyse de citation | Détection du domaine client et des pages exactes citées dans les références. SerpApi expose le texte, les références citées et les médias dans une structure JSON.  |
+| Part de voix IA | Pour chaque thème, calcul du pourcentage de réponses où la marque est mentionnée ou citée, face aux concurrents. |
+| Alertes | Email ou Slack quand une AI Overview apparaît/disparaît, quand un concurrent entre dans les citations, ou quand une page du client est retirée. |
+| Rapport hebdomadaire | « Vos 10 plus grosses pertes et gains de visibilité IA », avec requêtes, sources gagnantes et pages à optimiser. |
+
+## Données à exploiter
+
+SerpApi peut renvoyer, pour une requête Google :
+
+- Le texte de l’AI Overview.
+- Les références/citations.
+- Les concepts ou entités mis en avant.
+- Un `page_token` lorsqu’il faut une requête complémentaire vers l’AI Overview API pour récupérer le contenu complet.
+
+Le produit doit aussi conserver les résultats organiques classiques : cela permet de relier une citation IA à la page qui l’a obtenue, et de comparer « position SEO » et « présence dans la réponse IA ». Les recherches suggèrent que la majorité des citations proviennent souvent de pages déjà bien classées, mais qu’une page peut être citée sans être nécessairement première.[^2_10]
+
+## Métriques clés
+
+1. **AI Overview coverage** : part des requêtes suivies déclenchant une AI Overview.
+2. **Brand mention rate** : part des AI Overviews mentionnant la marque.
+3. **Citation share** : part des AI Overviews citant le domaine client.
+4. **Competitor share** : fréquence d’apparition de chaque concurrent.
+5. **Source diversity** : nombre de pages différentes du client citées.
+6. **Volatility** : nombre de changements hebdomadaires dans les citations et mentions.
+
+Exemple de score simple :
+
+$$
+\text{Score IA} = 0,4 \times \text{Taux de citation} + 0,3 \times \text{Taux de mention} + 0,3 \times \text{Part de voix concurrentielle}
+$$
+
+## Parcours utilisateur
+
+1. L’utilisateur entre son domaine, ses concurrents et 100 requêtes.
+2. Le système lance une première analyse SerpApi, pays/langue/appareil paramétrables.
+3. Il voit un tableau : requête, AI Overview oui/non, marque mentionnée, domaine cité, pages citées, concurrents présents.
+4. Il reçoit une alerte : « Sur “meilleur CRM pour agence immobilière”, votre domaine a perdu sa citation au profit de X et Y. »
+5. Il ouvre le détail : texte de l’AI Overview, extraits, sources, historique et recommandations.
+
+## Recommandations actionnables
+
+C’est ce qui transforme un tracker en SaaS. Pour chaque perte ou opportunité, le produit peut suggérer :
+
+- Créer une page réponse directe pour une question déclenchant une AI Overview.
+- Ajouter un paragraphe extractible, une définition, un tableau comparatif ou une FAQ.
+- Renforcer une page existante qui est citée par un concurrent mais pas par le client.
+- Corriger une représentation erronée : mauvais prix, mauvaise catégorie, produit absent d’une comparaison.
+- Prioriser les pages déjà dans le top 10 organique, car elles ont davantage de chances d’être retenues comme sources.
+
+
+## Cibles et pricing
+
+| Segment | Besoin principal | Prix indicatif |
+| :-- | :-- | :-- |
+| Marques DTC / SaaS | Surveiller mentions et citations sur les requêtes d’intention d’achat | 49–149 \$/mois |
+| Agences SEO | Reporting client et alertes multi-comptes | 199–799 \$/mois |
+| E-commerce | Suivre produits, catégories, comparatifs et concurrents | 99–499 \$/mois |
+| Relations publiques / marque | Détecter les sources tierces qui dominent le discours IA | 149–499 \$/mois |
+
+Un freemium pertinent : **25 requêtes, vérification hebdomadaire, un concurrent**. Les plans payants débloquent la fréquence quotidienne, les alertes temps réel, l’historique, les rapports blancs et le suivi multi-pays.
+
+## Différenciation face aux acteurs établis
+
+Des outils comme Semrush proposent déjà un suivi des AI Overviews, avec score de visibilité, mentions, citations, pages citées et comparaison concurrentielle. Pour éviter de concurrencer frontalement une suite SEO, ton micro-SaaS doit être plus étroit et plus opérationnel :
+- **Spécialisé** : uniquement la visibilité dans les réponses IA, pas un suite SEO complète.
+- **Orienté alerte** : « ce qui a changé aujourd’hui », plutôt qu’un rapport mensuel.
+- **Orienté action** : recommandations de contenu et de pages à corriger.
+- **Multi-marques / agences** : rapports clients prêts à envoyer.
+- **Géolocalisé** : comparer Paris, Montréal, Bruxelles ou New York pour la même requête.
+- **Axé sur les tiers** : identifier les médias, comparateurs, Reddit, YouTube ou sites d’avis qui captent les citations.
+
+
+## Risques à anticiper
+
+- **Volatilité** : les AI Overviews peuvent varier selon la requête, le moment, la langue, la localisation et la personnalisation ; il faut normaliser les tests et afficher les conditions de mesure.
+- **Coût API** : chaque requête peut nécessiter un appel Search puis, si un `page_token` est présent, un appel AI Overview supplémentaire.
+- **Fiabilité de la détection** : distinguer mention de marque, citation de domaine et citation d’une page précise évite les faux positifs.
+- **Concurrence** : les grandes plateformes ajoutent cette fonctionnalité ; ta défense sera la profondeur du workflow, les alertes et l’intégration à un métier précis.
