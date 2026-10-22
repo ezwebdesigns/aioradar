@@ -21,13 +21,25 @@ export default function SignupPage() {
     }
     setBusy(true)
     setError(null)
-    const res = await signUp.email({ email, password, name })
-    if (res.error) {
-      setError(res.error?.message || "Could not create account")
+    try {
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.message || "Could not create account")
+        setBusy(false)
+        return
+      }
+      router.push("/")
+    } catch (err) {
+      setError("Unexpected error")
       setBusy(false)
-      return
     }
-    router.push("/")
   }
 
   return (
@@ -40,7 +52,7 @@ export default function SignupPage() {
         <div className="bg-white rounded-[24px] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-white">
           <h1 className="text-[18px] font-semibold text-gray-900">Create your account</h1>
           <p className="text-xs text-gray-400 mt-1 mb-5">Start tracking your AI Overview visibility today.</p>
-          <form onSubmit={submit} className="flex flex-col gap-3">
+          <form onSubmit={submit} action="/api/auth/signup" className="flex flex-col gap-3">
             <input
               type="text" required placeholder="Your name" value={name}
               onChange={(e) => setName(e.target.value)}
