@@ -22,7 +22,14 @@ export default function LoginPage() {
       setBusy(false)
       return
     }
-    router.push("/")
+    const token = res.data?.token;
+    if (token) {
+      await fetch("/api/auth/set-session-cookie", {
+        method: "POST",
+        body: JSON.stringify({ token }),
+      });
+    }
+    window.location.href = "/";
   }
 
   return (

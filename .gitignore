@@ -6,3 +6,4 @@ dev.log
 dev-err.log
 build.log
 .playwright-mcp/
+.opencode
