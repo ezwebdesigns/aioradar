@@ -41,12 +41,6 @@ function initials(name = "") {
 
 function ProfileCard() {
   const [user, setUser] = useState(null)
-  useEffect(() => {
-    fetch("/api/auth/get-session")
-      .then(r => (r.ok ? r.json() : null))
-      .then(j => setUser(j?.user ?? null))
-      .catch(() => {})
-  }, [])
   return (
     <div className="bg-white rounded-[24px] p-5 shadow-sm border border-white">
       <div className="flex justify-between items-start">

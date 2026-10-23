@@ -15,12 +15,6 @@ export default function AvatarMenu() {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    let alive = true;
-    fetch("/api/auth/get-session")
-      .then(r => (r.ok ? r.json() : null))
-      .then(j => { if (alive) { setUser(j?.user ?? null); setReady(true); } })
-      .catch(() => { if (alive) setReady(true); });
-    return () => { alive = false };
   }, []);
 
   useEffect(() => {
@@ -53,12 +47,7 @@ export default function AvatarMenu() {
           </div>
           <div className="h-px bg-gray-100 my-1" />
           <button
-            onClick={async () => {
-              setOpen(false);
-              await fetch("/api/auth/sign-out", { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: "{}" });
-              router.push("/login");
-              router.refresh();
-            }}
+            onClick={() => setOpen(false)}
             className="w-full text-left px-3 py-2 text-xs text-gray-600 hover:bg-gray-50 rounded-xl flex items-center gap-2"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
