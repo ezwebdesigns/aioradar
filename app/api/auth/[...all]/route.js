@@ -1,9 +1,11 @@
-import { toNextJsHandler } from "better-auth/next-js";
-import { auth } from "@/lib/auth";
+export const runtime = "nodejs";
 
-export const runtime = "nodejs"
+export async function GET(request) {
+  return new Response(JSON.stringify({ ok: true }), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
-const handler = toNextJsHandler(auth)
-
-export const GET = handler.GET
-export const POST = handler.POST
+export async function POST(request) {
+  return new Response(null, { status: 405 });
+}
