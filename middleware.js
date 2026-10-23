@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 
 export function middleware(req) {
   const path = req.nextUrl.pathname;
-  // Protéger les routes commençant par /admin
-  if (path.startsWith("/admin")) {
+  // Protéger les routes commençant par /admin, sauf la page de login
+  if (path.startsWith("/admin") && !path.startsWith("/admin/login")) {
     const cookie = req.cookies.adminPassword;
     const expected = process.env.ADMIN_PASSWORD;
     if (!cookie || cookie !== expected) {
