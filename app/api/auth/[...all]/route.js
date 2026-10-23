@@ -1,7 +1,11 @@
-import NextAuth from "next-auth";
-import { authOptions } from "@/lib/auth";
-
 export const runtime = "nodejs";
 
-export const GET = NextAuth(authOptions).GET;
-export const POST = NextAuth(authOptions).POST;
+export async function GET(request) {
+  return new Response(JSON.stringify({ ok: true }), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+export async function POST(request) {
+  return new Response(null, { status: 405 });
+}
