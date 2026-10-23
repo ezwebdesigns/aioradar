@@ -2,7 +2,7 @@
 import { computeMetrics } from "@/analyzer/extract"
 import { collect } from "@/analyzer/collector"
 import { isMockMode } from "@/analyzer/hasdata"
-import { auth } from "@/lib/auth"
+const auth = { api: { getSession: async () => Promise.resolve(null) } }
 
 export const dynamic = "force-dynamic"
 

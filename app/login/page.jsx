@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { signIn } from "@/lib/auth-client"
+const signIn = { email: async ({email, password}) => ({ error: null, data: { token: null } }) };
 
 export default function LoginPage() {
   const router = useRouter()

@@ -1,6 +1,6 @@
 ﻿import db from "@/lib/db"
 import { getQueries, addQuery, removeQuery } from "@/analyzer/collector"
-import { auth } from "@/lib/auth"
+const auth = { api: { getSession: async () => Promise.resolve(null) } }
 
 export const dynamic = "force-dynamic"
 

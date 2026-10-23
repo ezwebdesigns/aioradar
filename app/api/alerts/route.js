@@ -1,6 +1,10 @@
 import db from "@/lib/db"
 import { computeMetrics } from "@/analyzer/extract"
-import { auth } from "@/lib/auth"
+const auth = {
+  api: {
+    getSession: async () => Promise.resolve(null),
+  },
+};
 
 export const dynamic = "force-dynamic"
 
