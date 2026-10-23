@@ -1,7 +1,18 @@
 import { NextResponse } from "next/server";
 
 export function middleware(req) {
-  return NextResponse.next()
+  const path = req.nextUrl.pathname;
+  // Protéger les routes commençant par /admin
+  if (path.startsWith("/admin")) {
+    const cookie = req.cookies.adminPassword;
+    const expected = process.env.ADMIN_PASSWORD;
+    if (!cookie || cookie !== expected) {
+      const loginUrl = new URL("/admin/login", req.url);
+      loginUrl.searchParams.set("error", "non_auth");
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+  return NextResponse.next();
 }
 
 export const config = {
